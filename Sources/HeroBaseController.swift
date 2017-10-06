@@ -276,7 +276,7 @@ public class HeroBaseController: NSObject {
 
   /// Actually animate the views
   /// subclass should call `prepareForTransition` & `prepareForAnimation` before calling `animate`
-  open func animate() {
+  @objc open func animate() {
     guard transitioning else { fatalError() }
     // auto hide all animated views
     for view in animatingFromViews {
@@ -315,7 +315,7 @@ public class HeroBaseController: NSObject {
     }
   }
 
-  func complete(after: TimeInterval, finishing: Bool) {
+  @objc func complete(after: TimeInterval, finishing: Bool) {
     guard transitioning else { fatalError() }
     if after <= 0.001 {
       complete(finished: finishing)
@@ -327,7 +327,7 @@ public class HeroBaseController: NSObject {
     self.beginTime = CACurrentMediaTime() - timePassed
   }
 
-  func complete(finished: Bool) {
+  @objc func complete(finished: Bool) {
     guard transitioning else { fatalError() }
     for animator in animators {
       animator.clean()
